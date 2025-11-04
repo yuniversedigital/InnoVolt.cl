@@ -41,7 +41,7 @@ const FotovoltaicasPage = () => {
       </h3>
       <p className="text-gray-700 mb-4">
         ¿Solo necesita los paneles? Revise nuestro catálogo completo con
-        detalles técnicos y precios.
+        detalles técnicos y precios
       </p>
       <Link
         to="/productos/paneles"
