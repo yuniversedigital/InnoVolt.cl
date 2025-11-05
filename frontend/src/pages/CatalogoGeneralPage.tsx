@@ -414,7 +414,7 @@ const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
             e.currentTarget.src =
               "https://via.placeholder.com/300x200?text=InnoVolt+Image";
           }}
-          className="w-full h-auto object-contain max-h-48 lg:max-h-full rounded-lg"
+          className="w-full h-full object-cover"
         />
       </div>
 
