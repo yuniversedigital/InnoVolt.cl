@@ -21,6 +21,7 @@ import {
 import ProductCard from "../components/ProductCard";
 // Usar un nombre de archivo de fondo genérico o el que estés utilizando
 import Fondo3 from "../assets/2.png";
+import WhatsappFloat from "../components/WhatsappFloat";
 // ELIMINADOS: CartIcon, Giftcard, ReservaHora, CarruselAlianzas, etc.
 
 // --- 1. CONSTANTES DE INNOVOLT ---
@@ -312,7 +313,7 @@ const KeyServicesSection = () => (
            {" "}
       <p className="text-xl text-gray-600 mb-12">
                 Expertos en cada área para la eficiencia, seguridad y
-        sostenibilidad de         su proyecto.      {" "}
+        sostenibilidad de su proyecto.      {" "}
       </p>
            {" "}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -824,10 +825,9 @@ const Home = () => {
                 <HeroSection />
         <ProcessSection />
           <KeyServicesSection />   {/* <WhyChooseUsSection />        */}
-        <ProductsSection />         💡 Nueva sección de proceso        {" "}
-        <ContactSection />     {" "}
+        <ProductsSection />              <ContactSection />     {" "}
       </main>
-            <Footer />   {" "}
+            <Footer />    <WhatsappFloat />;
     </div>
   );
 };

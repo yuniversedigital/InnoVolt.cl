@@ -6,6 +6,7 @@
 @import "leaflet/dist/leaflet.css";
 
 .whatsapp-float {
+  /* 💡 Posición fija y z-index alto para que esté sobre todo */
   position: fixed;
   width: 60px;
   height: 60px;
@@ -16,12 +17,10 @@
   border-radius: 50%;
   box-shadow: 2px 2px 3px #999;
   z-index: 1000;
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
 
-  /* 👇 Sugerencia: Añadir transición de color */
-  transition: background-color 0.3s ease;
-
-  /* Propiedades para el ícono de fondo */
-  background-image: url("/Whatsapp.png"); /* 💡 Ruta ajustada, verifica la tuya */
+  /* 💡 Icono de fondo (Asume que Whatsapp.png está en la carpeta /public) */
+  background-image: url("/Whatsapp.png");
   background-size: 35px 35px;
   background-repeat: no-repeat;
   background-position: center;
@@ -32,7 +31,6 @@
   background-color: #1da851;
 }
 
-/* Media query para pantallas más pequeñas */
 @media (max-width: 768px) {
   .whatsapp-float {
     width: 50px;

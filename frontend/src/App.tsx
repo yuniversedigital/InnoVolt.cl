@@ -30,6 +30,7 @@ export default function App() {
       <Router>
         {/* 2. Colocamos CartIcon aquí para que se muestre en todas las rutas */}
         <CartIcon />
+
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
