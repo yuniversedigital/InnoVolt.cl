@@ -15,6 +15,13 @@ const PHONE_NUMBER = "56912345678";
 
 // --- 1. SIMULATED QA ENGINE DATA ---
 const QA_ANSWERS = {
+  factura:
+    "Nuestra aplicación gestiona la cotización y el agendamiento. La factura oficial se genera **posteriormente** y es enviada por nuestro equipo administrativo a tu correo electrónico, una vez que la cotización del proyecto es aceptada.",
+  domicilio:
+    "todos nuestros servicios (Eléctricas, Fotovoltaicas y Electromecánicas) incluyen visitas a domicilio o terreno. Para la inspección, te recomendamos usar el menú principal y agendar tu diagnóstico o visita técnica en el área que necesites.",
+  servicios:
+    "En InnoVolt ofrecemos soluciones integrales. Nuestros 3 servicios principales son: 1. Soluciones Eléctricas (instalaciones y certificación), 2. Sistemas Fotovoltaicos (kits y estudios de viabilidad), y 3. Electromecánica Vehicular (diagnóstico y reparación). Selecciona una de las opciones del menú principal para agendar una visita en el área de tu interés.",
+
   estudio:
     "El Estudio de Viabilidad Solar (EVS) te garantiza: 1) Un Retorno de Inversión (ROI) optimizado**, 2) Máximo ahorro con dimensionamiento preciso, y 3) Respaldo de ingeniería con cumplimiento normativo. El costo inicial es abonado si contratas la instalación. Te recomendamos agendar una consulta en el menú principal.",
   cotizar:
@@ -42,7 +49,11 @@ const getAnswer = (question: string): string | null => {
     return QA_ANSWERS.visita;
   if (lowerQuestion.includes("garantia") || lowerQuestion.includes("garantía"))
     return QA_ANSWERS.garantia;
-  if (lowerQuestion.includes("horario") || lowerQuestion.includes("horas"))
+  if (
+    lowerQuestion.includes("horario") ||
+    lowerQuestion.includes("horas") ||
+    lowerQuestion.includes("hora")
+  )
     return QA_ANSWERS.horario;
   if (
     lowerQuestion.includes("financiamiento") ||
@@ -50,11 +61,30 @@ const getAnswer = (question: string): string | null => {
   )
     return QA_ANSWERS.financiamiento;
   if (
+    lowerQuestion.includes("factura") ||
+    lowerQuestion.includes("pagar") ||
+    lowerQuestion.includes("pago")
+  )
+    return QA_ANSWERS.factura;
+  if (
+    lowerQuestion.includes("domicilio") ||
+    lowerQuestion.includes("terreno") ||
+    lowerQuestion.includes("donde") ||
+    lowerQuestion.includes("ubicacion")
+  )
+    return QA_ANSWERS.domicilio;
+  if (
     lowerQuestion.includes("estudio") ||
     lowerQuestion.includes("fotovoltaico") ||
     lowerQuestion.includes("viabilidad")
   )
     return QA_ANSWERS.estudio;
+  if (
+    lowerQuestion.includes("servicios") ||
+    lowerQuestion.includes("cuales") ||
+    lowerQuestion.includes("que hacen")
+  )
+    return QA_ANSWERS.servicios;
 
   return null;
 };
