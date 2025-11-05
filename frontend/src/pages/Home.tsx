@@ -424,7 +424,7 @@ const ProcessSection = () => (
 
       {/* 1. Selección de Servicio */}
       <h3 className="text-2xl font-bold text-gray-700 text-center mb-6">
-        1. Elige tu Área de Interés para Iniciar:
+        1. Elige tu Área de Interés:
       </h3>
 
       {/* CONTENEDOR DE SELECCIÓN DE SERVICIO */}

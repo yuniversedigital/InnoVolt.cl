@@ -129,7 +129,7 @@ const CartIcon = () => {
     });
 
     message += `\nTotal estimado: $${total.toLocaleString("es-CL")} CLP\n`;
-    message += `\nMis datos de contacto (Opcional): Nombre: ${clientName}, Email: ${clientEmail}, Teléfono: ${clientPhone}`;
+    message += `\nMis datos de contacto : Nombre: ${clientName}, Email: ${clientEmail}, Teléfono: ${clientPhone}`;
 
     const whatsappUrl = `https://wa.me/${PHONE_NUMBER.replace(
       /[^0-9]/g,
@@ -266,6 +266,13 @@ const CartIcon = () => {
                   />
 
                   <button
+                    onClick={handleSendViaWhatsApp}
+                    className="w-full py-2 rounded text-white bg-green-500 hover:bg-green-600 font-semibold"
+                  >
+                    Enviar por WhatsApp
+                  </button>
+                  <p className="text-center text-xs text-gray-500 py-1">O</p>
+                  <button
                     onClick={handleSolicitarCotizacion}
                     disabled={isProcessing}
                     className={`w-full py-2 rounded text-white font-semibold ${
@@ -276,16 +283,6 @@ const CartIcon = () => {
                   >
                     {isProcessing ? "Enviando..." : "Enviar Solicitud al Email"}
                   </button>
-
-                  <p className="text-center text-xs text-gray-500 py-1">O</p>
-
-                  <button
-                    onClick={handleSendViaWhatsApp}
-                    className="w-full py-2 rounded text-white bg-green-500 hover:bg-green-600 font-semibold"
-                  >
-                    Enviar por WhatsApp
-                  </button>
-
                   <button
                     onClick={() => setShowForm(false)}
                     className="w-full py-1 text-xs text-gray-500 hover:text-gray-700"
