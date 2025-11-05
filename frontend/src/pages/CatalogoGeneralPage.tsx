@@ -14,6 +14,21 @@ import {
   Settings,
 } from "lucide-react";
 import { useCart } from "./CartContext";
+import panel1 from "../assets/panel200 (2).png";
+import panel2 from "../assets/panel200.png";
+import panel3 from "../assets/panel615.png";
+import panel4 from "../assets/panel700.png";
+import bateria1 from "../assets/bateria100.png"; // Nuevo Panel
+import bateria2 from "../assets/bateria200.png";
+import controladorcsolarmppt from "../assets/controlador100.png";
+import controladorcsolarpwm from "../assets/controladorpwm.png";
+import inversorvoltaje500 from "../assets/inversorsino500.png";
+import inversor3000ondapura from "../assets/inversorop3000.png";
+import inversor3200hibondapura from "../assets/inversor3200w.png";
+import inversorvoltronic3000ondapura from "../assets/inversorvoltronik.png";
+// Imágenes para los nuevos servicios vehiculares
+import diagnosticoVehicularImg from "/src/assets/diagnostico-vehicular.jpg";
+import reparacionInyeccionImg from "/src/assets/reparacion-inyeccion.jpg";
 
 // --- Tipos de Datos y Estructura ---
 type AreaServicio =
@@ -33,6 +48,8 @@ interface Product {
   price: number;
   stock: number;
   details: string[];
+  includesAssistance: boolean;
+  includesEnvio: boolean;
 }
 
 // NOTA: En una aplicación real, esta data se cargaría desde una API.
@@ -49,6 +66,8 @@ const ALL_PRODUCTS: Product[] = [
       "Solución de autoconsumo para reducir costos en el hogar. Fácil instalación y retorno de inversión rápido.",
     price: 2800000,
     stock: 20,
+    includesAssistance: false,
+    includesEnvio: true,
     details: [
       "Potencia Nominal: 2 kW",
       "Incluye: 4 Paneles 500Wp, Microinversor y kit de montaje.",
@@ -66,6 +85,8 @@ const ALL_PRODUCTS: Product[] = [
       "Diseño e instalación de un sistema solar fotovoltaico para autoconsumo en hogares, incluyendo trámites y puesta en marcha.",
     price: 4500000,
     stock: 10,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Incluye: 10 Paneles 500Wp, Inversor 5kW, Estructura y Montaje",
       "Garantía de Instalación: 3 años",
@@ -75,51 +96,173 @@ const ALL_PRODUCTS: Product[] = [
 
   // --- Componentes Individuales ADICIONALES (tag: "Producto") ---
   {
-    id: "inversor-hibrido",
-    title: "Inversor Híbrido 3KW",
+    id: "controladormmpt",
+    title: "Controlador Mppt 100ah (12-48v)",
     area: "Fotovoltaicas",
     tag: "Producto", // 💡 PRODUCTO INDIVIDUAL
-    imgUrl: "/src/assets/inversor-hibrido.jpg",
+    imgUrl: controladorcsolarmppt,
     category: "Componentes",
     description:
-      "Inversor de alta eficiencia que permite inyección a la red y gestión de baterías simultánea.",
-    price: 550000,
+      "El controlador de carga solar con pantalla retroiluminada, algoritmo de control MPPT más avanzado y el punto de máxima potencia de la matriz PV se puede rastrear rápidamente en cualquier entorno para que pueda obtener la máxima energía del panel solar y significativamente mejorar la utilización de la energía en el sistema solar. Se puede utilizar en estaciones base de comunicación, sistemas de suministro de energía para el hogar, semáforos, farolas solares, sistemas de lámparas de patio, etc. La pantalla LCD está diseñada para mostrar dinámicamente los datos de operación y el estado de funcionamiento del equipo.",
+    price: 65000,
     stock: 45,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
-      "Potencia: 3 kW",
-      "Tecnología: MPPT/Híbrido",
-      "Monitoreo: Wi-Fi integrado",
+      "Voltaje Mínimo/Máximo de Salida: 12V - 24V (Regulable)",
+      "Identificación V automática de 12/24V/36V/48V",
+      "7 tipos de selección de modo de trabajo",
+      "Corriente de carga: 100A",
+      "Compatible con carga de batería Seal, GEL, Flooded, LifePO4.",
+      "2 Puertos de carga duales USB 5V",
+      "Protección contra; Sobretension - Sobrecorriente - Sobretemperatura",
+      "Frecuencia: 50/60 Hz",
     ],
   },
   {
-    id: "bateria-litio",
-    title: "Batería de Litio 5kWh",
+    id: "controladorpwm",
+    title: "Controlador PWM 60ah (12-48v)",
     area: "Fotovoltaicas",
     tag: "Producto", // 💡 PRODUCTO INDIVIDUAL
-    imgUrl: "/src/assets/bateria-litio.jpg",
+    imgUrl: controladorcsolarpwm,
+    category: "Componentes",
+    description:
+      "El controlador de carga solar con pantalla retroiluminada, algoritmo de control MPPT más avanzado y el punto de máxima potencia de la matriz PV se puede rastrear rápidamente en cualquier entorno para que pueda obtener la máxima energía del panel solar y significativamente mejorar la utilización de la energía en el sistema solar. Se puede utilizar en estaciones base de comunicación, sistemas de suministro de energía para el hogar, semáforos, farolas solares, sistemas de lámparas de patio, etc. La pantalla LCD está diseñada para mostrar dinámicamente los datos de operación y el estado de funcionamiento del equipo.",
+    price: 55000,
+    stock: 45,
+    includesAssistance: true,
+    includesEnvio: true,
+    details: [
+      "Voltaje Mínimo/Máximo de Salida: 12V - 24V (Regulable)",
+      "Identificación V automática de 12/24V/36V/48V",
+      "7 tipos de selección de modo de trabajo",
+      "Corriente de carga: 100A",
+      "Compatible con carga de batería Seal, GEL, Flooded, LifePO4.",
+      "2 Puertos de carga duales USB 5V",
+      "Protección contra; Sobretension - Sobrecorriente - Sobretemperatura",
+      "Frecuencia: 50/60 Hz",
+    ],
+  },
+  {
+    id: "inversor500",
+    title: "Inversor 500W (12-220v) Onda Sinosoidal",
+    area: "Fotovoltaicas",
+    tag: "Producto", // 💡 PRODUCTO INDIVIDUAL
+    imgUrl: inversorvoltaje500,
+    category: "Componentes",
+    description:
+      "El controlador de carga solar con pantalla retroiluminada, algoritmo de control MPPT más avanzado y el punto de máxima potencia de la matriz PV se puede rastrear rápidamente en cualquier entorno para que pueda obtener la máxima energía del panel solar y significativamente mejorar la utilización de la energía en el sistema solar. Se puede utilizar en estaciones base de comunicación, sistemas de suministro de energía para el hogar, semáforos, farolas solares, sistemas de lámparas de patio, etc. La pantalla LCD está diseñada para mostrar dinámicamente los datos de operación y el estado de funcionamiento del equipo.",
+    price: 25000,
+    stock: 45,
+    includesAssistance: true,
+    includesEnvio: true,
+    details: ["detalles"],
+  },
+  {
+    id: "bateria-100a",
+    title: "Batería 100ah",
+    area: "Fotovoltaicas",
+    tag: "Producto", // 💡 PRODUCTO INDIVIDUAL
+    imgUrl: bateria1,
     category: "Componentes",
     description:
       "Almacenamiento de ciclo profundo, ideal para respaldo y sistemas aislados de alto consumo.",
-    price: 950000,
+    price: 120000,
     stock: 25,
+    includesAssistance: false,
+    includesEnvio: true,
+    details: ["Capacidad: 5 kWh", "Tipo: LiFePO4", "Ciclos de Vida: >6000"],
+  },
+  {
+    id: "bateria-200a",
+    title: "Batería 200ah",
+    area: "Fotovoltaicas",
+    tag: "Producto", // 💡 PRODUCTO INDIVIDUAL
+    imgUrl: bateria2,
+    category: "Componentes",
+    description:
+      "Almacenamiento de ciclo profundo, ideal para respaldo y sistemas aislados de alto consumo.",
+    price: 250000,
+    stock: 25,
+    includesAssistance: false,
+    includesEnvio: true,
     details: ["Capacidad: 5 kWh", "Tipo: LiFePO4", "Ciclos de Vida: >6000"],
   },
   // --- Componente Individual Existente (Fotovoltaicas) ---
   {
-    id: "panel-530w",
-    title: "Panel Monocristalino Bifacial",
+    id: "panel-100",
+    title: "Panel Fotovoltaico Monocristalino 100W",
     area: "Fotovoltaicas",
     tag: "Producto", // Tag: Producto (Aparece en Componentes Individuales)
-    imgUrl: "/src/assets/panel-530w.jpg",
-    category: "Bifacial / Ciclo Alto",
+    imgUrl: panel1,
+    category: "Paneles Portátiles / Off-Grid",
     description:
-      "Máxima eficiencia y durabilidad. Captura luz por ambos lados, ideal para grandes proyectos fotovoltaicos.",
+      "Potencia máxima: 100 W. Voltaje de circuito abierto: 18V. Voltaje máximo del sistema: 18V. Eficiencia energética del panel solar de 20.42% para máxima conversión de energía. Tipo de panel solar monocristalino para mejor rendimiento.  es impermeable con grado IP65.  Incluye 4 patas de apoyo que permiten ajustar la dirección del panel solar para obtener hasta un 25% más de luz solar en comparación con una posición plana.",
     price: 180000,
     stock: 50,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Tecnología: Monocristalino",
-      "Garantía: 12 años producto / 25 años potencia",
-      "Certificado: SEC, IEC 61215",
+      "Garantía: 12 meses",
+      "Certificado: CE, FCC, RoHS y PSE.",
+    ],
+  },
+  {
+    id: "panel-200",
+    title: "Panel Fotovoltaico Monocristalino 200W",
+    area: "Fotovoltaicas",
+    tag: "Producto", // Tag: Producto (Aparece en Componentes Individuales)
+    imgUrl: panel2,
+    category: "Bifacial / Ciclo Alto",
+    description:
+      "Panel Solar Monocristalinos Fotovoltaicos de 12V y 200W, ideales para aprovechar la energía solar de manera eficiente. Cada panel cuenta con una potencia máxima de 200W, ofreciendo un voltaje máximo de 18V y una corriente máxima de 11.42A, lo que garantiza un rendimiento óptimo. Con un voltaje de circuito abierto de 21V y una corriente de cortocircuito de 12.82A, estos paneles son perfectos para diversas aplicaciones energéticas. Fabricados por la reconocida marca FeelPower Energy, cada panel está diseñado con una sola celda, asegurando una durabilidad excepcional. Además, su impacto positivo en el medio ambiente los convierte en una opción responsable y sostenible. Con dimensiones de 1.64 x 67 x 3 cm, son fáciles de instalar y adaptar a tus necesidades energéticas.",
+    price: 90000,
+    stock: 50,
+    includesAssistance: true,
+    includesEnvio: true,
+    details: [
+      "Tecnología: Monocristalino",
+      "Garantía: 12 meses",
+      "Certificado: CE, FCC, RoHS y PSE.",
+    ],
+  },
+  {
+    id: "panel-615",
+    title: "Panel Fotovoltaico Monocristalino 615W",
+    area: "Fotovoltaicas",
+    tag: "Producto", // Tag: Producto (Aparece en Componentes Individuales)
+    imgUrl: panel3,
+    category: "Bifacial / Ciclo Alto",
+    description:
+      "Panel Solar Monocristalinos Fotovoltaicos de 12V y 200W, ideales para aprovechar la energía solar de manera eficiente. Cada panel cuenta con una potencia máxima de 200W, ofreciendo un voltaje máximo de 18V y una corriente máxima de 11.42A, lo que garantiza un rendimiento óptimo. Con un voltaje de circuito abierto de 21V y una corriente de cortocircuito de 12.82A, estos paneles son perfectos para diversas aplicaciones energéticas. Fabricados por la reconocida marca FeelPower Energy, cada panel está diseñado con una sola celda, asegurando una durabilidad excepcional. Además, su impacto positivo en el medio ambiente los convierte en una opción responsable y sostenible. Con dimensiones de 1.64 x 67 x 3 cm, son fáciles de instalar y adaptar a tus necesidades energéticas.",
+    price: 150000,
+    stock: 50,
+    includesAssistance: true,
+    includesEnvio: true,
+    details: [
+      "Tecnología: Monocristalino",
+      "Garantía: 12 meses",
+      "Certificado: CE, FCC, RoHS y PSE.",
+    ],
+  },
+  {
+    id: "panel-700",
+    title: "Panel Fotovoltaico Monocristalino 700W",
+    area: "Fotovoltaicas",
+    tag: "Producto", // Tag: Producto (Aparece en Componentes Individuales)
+    imgUrl: panel4,
+    category: "Bifacial / Ciclo Alto",
+    description:
+      "Panel Solar Monocristalinos Fotovoltaicos de 12V y 200W, ideales para aprovechar la energía solar de manera eficiente. Cada panel cuenta con una potencia máxima de 200W, ofreciendo un voltaje máximo de 18V y una corriente máxima de 11.42A, lo que garantiza un rendimiento óptimo. Con un voltaje de circuito abierto de 21V y una corriente de cortocircuito de 12.82A, estos paneles son perfectos para diversas aplicaciones energéticas. Fabricados por la reconocida marca FeelPower Energy, cada panel está diseñado con una sola celda, asegurando una durabilidad excepcional. Además, su impacto positivo en el medio ambiente los convierte en una opción responsable y sostenible. Con dimensiones de 1.64 x 67 x 3 cm, son fáciles de instalar y adaptar a tus necesidades energéticas.",
+    price: 180000,
+    stock: 50,
+    includesAssistance: true,
+    includesEnvio: true,
+    details: [
+      "Tecnología: Monocristalino",
+      "Garantía: 12 meses",
+      "Certificado: CE, FCC, RoHS y PSE.",
     ],
   },
 
@@ -135,6 +278,8 @@ const ALL_PRODUCTS: Product[] = [
       "Servicio de inspección y certificación de instalaciones eléctricas de baja tensión ante la Superintendencia de Electricidad y Combustibles (SEC).",
     price: 250000,
     stock: 99,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Incluye: Visita técnica, medición de puesta a tierra y gestión documental.",
       "Válido para: Aumentos de capacidad, instalaciones nuevas y regularizaciones.",
@@ -152,6 +297,8 @@ const ALL_PRODUCTS: Product[] = [
       "Tablero de distribución IP65, 12 vías, ideal para ambientes con alta humedad o polvo. Montaje rápido y seguro.",
     price: 85000,
     stock: 30,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Material: Policarbonato autoextinguible",
       "Protección: IP65",
@@ -171,6 +318,8 @@ const ALL_PRODUCTS: Product[] = [
       "Programa de mantenimiento preventivo para sistemas de ventilación, calefacción y aire acondicionado (HVAC).",
     price: 150000,
     stock: 99,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Revisión y limpieza de filtros.",
       "Inspección de compresores y ductos.",
@@ -188,6 +337,8 @@ const ALL_PRODUCTS: Product[] = [
       "Implementación de sistemas de control para bombas hidráulicas y motobombas, optimizando el flujo y reduciendo fallas.",
     price: 550000,
     stock: 99,
+    includesAssistance: true,
+    includesEnvio: true,
     details: [
       "Incluye: Variador de frecuencia, sensor de presión y controlador PLC básico.",
       "Beneficios: Ahorro energético y vida útil prolongada del equipo.",
@@ -213,6 +364,7 @@ const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
     const item = {
       id: product.id,
       title: product.title,
+
       // Usamos el tag (Producto, Kit, Servicio) como etiqueta de opción por defecto
       optionLabel: product.tag,
       category: product.area,
@@ -273,6 +425,16 @@ const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
             <h3 className="text-2xl font-extrabold text-gray-800 flex items-center">
               {getAreaIcon(product.area)}
               {product.title}
+              {product.includesAssistance && (
+                <span className="text-xs font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full ml-3 hidden sm:inline-block">
+                  (INCLUYE ASESORÍA COMPLETA DE USO)
+                </span>
+              )}
+              {product.includesEnvio && (
+                <span className="text-xs font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full ml-3 hidden sm:inline-block">
+                  (CON ENVÍO A DOMICILIO)
+                </span>
+              )}
             </h3>
             <span
               className={`text-sm font-semibold text-white ${getAreaColor(
@@ -452,21 +614,23 @@ function CatalogoGeneralPage() {
         </div>
       </header>
       <nav className="sticky top-0 z-30 bg-gray-100 shadow-lg border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center space-x-6">
+               {" "}
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-start space-x-6">
+          {/* 💡 CORRECCIÓN: Cambiado de 'justify-center' a 'justify-start' */} 
+                 {" "}
           <a
             href="#" // Enlace a la sección de Componentes Individuales
             className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
           >
-            <Filter size={18} className="mr-2" /> Productos Individuales
+                        <Filter size={18} className="mr-2" /> Componentes
+            Individuales
           </a>
-
           <a
             href="#kits-section" // Enlace a la sección Kits Fotovoltaicos
             className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
           >
             <PackageCheck size={18} className="mr-2" /> Kits
           </a>
-
           <a
             href="#servicios-section" // Enlace a la sección Servicios
             className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
