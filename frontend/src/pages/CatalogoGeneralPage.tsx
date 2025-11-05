@@ -206,16 +206,18 @@ interface PanelCardProps {
 }
 
 const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addToCart } = useCart(); // Aseguramos que useCart está importado
 
   const handleBuyNow = () => {
+    // 💡 Lógica de adición al carrito ya corregida
     const item = {
       id: product.id,
       title: product.title,
+      // Usamos el tag (Producto, Kit, Servicio) como etiqueta de opción por defecto
       optionLabel: product.tag,
       category: product.area,
       price: product.price,
-      quantity: 1,
+      quantity: 1, // Siempre agregamos 1 unidad por defecto
     };
 
     addToCart(item);
@@ -302,7 +304,7 @@ const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
             {product.price.toLocaleString("es-CL")} CLP
           </span>
           <button
-            onClick={handleBuyNow}
+            onClick={handleBuyNow} // Aseguramos que se llama a handleBuyNow
             disabled={product.stock === 0}
             className={`inline-flex items-center px-6 py-3 font-semibold rounded-lg shadow-xl transition-colors 
                 ${
@@ -329,6 +331,7 @@ const ProductCard: React.FC<PanelCardProps> = ({ product }) => {
     </div>
   );
 };
+
 // --- FIN Subcomponente: Tarjeta de Producto Detallada ---
 
 // 💡 NUEVO COMPONENTE: Sección dedicada a los Servicios (Mantenido)
@@ -402,7 +405,7 @@ function CatalogoGeneralPage() {
   const location = useLocation();
   const [selectedArea, setSelectedArea] = useState<AreaServicio>("Todos");
 
-  // 💡 CORRECCIÓN 1: Declaramos excludedTags aquí, fuera de los hooks.
+  // 💡 Declaramos excludedTags aquí, fuera de los hooks.
   const excludedTags = ["Kit", "Servicio"];
 
   // 💡 Efecto para scrollear a Kits o Servicios si el hash lo indica
@@ -414,7 +417,7 @@ function CatalogoGeneralPage() {
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [location.hash]); // 💡 AJUSTE 2: Usamos excludedTags dentro del useMemo
+  }, [location.hash]); // 💡 Dependencia correcta: solo 'location.hash'
 
   const filteredProducts = useMemo(() => {
     if (selectedArea === "Todos") {
@@ -424,7 +427,8 @@ function CatalogoGeneralPage() {
       (product) =>
         product.area === selectedArea && !excludedTags.includes(product.tag)
     );
-  }, [selectedArea]);
+    // 💡 CORRECCIÓN: Agregar 'excludedTags' como dependencia, ya que se usa en el filtro
+  }, [selectedArea, excludedTags]);
 
   const areas: AreaServicio[] = [
     "Todos",
@@ -447,6 +451,30 @@ function CatalogoGeneralPage() {
           </p>
         </div>
       </header>
+      <nav className="sticky top-0 z-30 bg-gray-100 shadow-lg border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex justify-center space-x-6">
+          <a
+            href="#" // Enlace a la sección de Componentes Individuales
+            className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+          >
+            <Filter size={18} className="mr-2" /> Productos Individuales
+          </a>
+
+          <a
+            href="#kits-section" // Enlace a la sección Kits Fotovoltaicos
+            className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+          >
+            <PackageCheck size={18} className="mr-2" /> Kits
+          </a>
+
+          <a
+            href="#servicios-section" // Enlace a la sección Servicios
+            className="flex items-center text-md font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+          >
+            <Settings size={18} className="mr-2" /> Servicios
+          </a>
+        </div>
+      </nav>
 
       {/* 💡 INICIO DE RENDERIZADO DE COMPONENTES INDIVIDUALES (Filtros + Cards) */}
       <section className="max-w-7xl mx-auto px-6 pt-10">
@@ -462,21 +490,6 @@ function CatalogoGeneralPage() {
           </p>
 
           {/* 💡 INICIO: BOTONES DE REDIRECCIÓN RÁPIDA */}
-          <div className="flex flex-wrap gap-4 mb-8 justify-center sm:justify-start">
-            <Link
-              to="#servicios-section"
-              className="inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
-            >
-              ← Ir a Servicios
-            </Link>
-            <Link
-              to="#kits-section"
-              className="inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
-            >
-              ← Ir a Kits Fotovoltaicos
-            </Link>
-          </div>
-          {/* 💡 FIN: BOTONES DE REDIRECCIÓN RÁPIDA */}
 
           <div className="flex flex-wrap gap-4">
             {areas.map((area) => (

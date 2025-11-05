@@ -8,7 +8,7 @@ const API_BASE_URL = (
   import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:3000"
 ).replace(/\/+$/, "");
 
-const PHONE_NUMBER = "+56 9 1234 5678";
+const PHONE_NUMBER = "+56 996094015";
 
 const CartIcon = () => {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();

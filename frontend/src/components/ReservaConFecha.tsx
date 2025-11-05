@@ -1,4 +1,5 @@
-// 💡 CORRECCIÓN: Eliminamos la importación de React y limpiamos las importaciones de lucide
+// ReservaConFecha.tsx
+
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,10 +8,10 @@ import { toZonedTime, format } from "date-fns-tz";
 import { format as formatFns } from "date-fns";
 // 💡 CORRECCIÓN: Añadimos ShoppingCart e importamos solo los iconos utilizados.
 import { useCart } from "../pages/CartContext";
-import { Wrench, Calendar, ShoppingCart } from "lucide-react";
+// 💡 Importamos Wrench, Calendar, ShoppingCart, MapPin, y Car para los iconos.
+import { Wrench, Calendar, ShoppingCart, MapPin, Car } from "lucide-react";
 
 // Define a fixed time zone for Chile
-
 const CHILE_TIME_ZONE = "America/Santiago";
 
 // 💡 Interfaz simplificada para las propiedades del modal
@@ -36,8 +37,16 @@ export default function ReservaConFecha({
   const [fechaHora, setFechaHora] = useState<Date | null>(null);
   const [nombre, setNombre] = useState<string>("");
   const [telefono, setTelefono] = useState<string>("");
+  const [direccion, setDireccion] = useState<string>("");
+
+  // 💡 NUEVOS ESTADOS PARA VEHÍCULOS
+  const [tipoVehiculo, setTipoVehiculo] = useState<
+    "Automóvil" | "Motocicleta" | string
+  >("Automóvil");
+  const [problema, setProblema] = useState<string>("");
 
   const handleConfirm = () => {
+    // 1. Validaciones generales
     if (!fechaHora) {
       alert("Por favor, selecciona fecha y hora para la visita.");
       return;
@@ -46,16 +55,30 @@ export default function ReservaConFecha({
       alert("Por favor, ingresa tu nombre y número de teléfono.");
       return;
     }
+    if (!direccion.trim()) {
+      alert("Por favor, ingresa la dirección de la visita.");
+      return;
+    }
 
-    // --- 1. Obtener strings de Fecha/Hora en zona horaria de Chile ---
+    // 2. Validación CONDICIONAL para ELECTROMECÁNICA
+    let vehicleDetails = "";
+    if (serviceCategory === "Electromecánica") {
+      if (!problema.trim()) {
+        alert("Por favor, describe el problema que presenta el vehículo.");
+        return;
+      }
+      vehicleDetails = ` | Vehículo: ${tipoVehiculo} | Problema: ${problema.trim()}`;
+    }
+
+    // --- 3. Obtener strings de Fecha/Hora en zona horaria de Chile ---
     const zonedDate = toZonedTime(fechaHora, CHILE_TIME_ZONE);
     const selectedTimeString = format(zonedDate, "HH:mm");
-    const selectedDateString = format(zonedDate, "yyyy-MM-dd");
+    // const selectedDateString = format(zonedDate, "yyyy-MM-dd"); // No se usa directamente aquí
 
+    // --- (Validación de Disponibilidad omitida por brevedad, asumiendo que es correcta) ---
+    const selectedDateString = format(zonedDate, "yyyy-MM-dd");
     const hoursForSelectedDay =
       disponibilidadPorFechaDelServicio?.[selectedDateString] || [];
-
-    // --- 2. Validación de Disponibilidad (Manteniendo la lógica existente) ---
     if (!hoursForSelectedDay.includes(selectedTimeString)) {
       alert(
         "La hora seleccionada no está disponible. Por favor, revisa el calendario."
@@ -63,18 +86,20 @@ export default function ReservaConFecha({
       return;
     }
 
-    // --- 3. Crear el objeto ItemCotizacion para el carrito ---
+    // 4. Preparamos el detalle final para el carrito
+    const direccionStr = `[Dir: ${direccion}]`;
+
     const item = {
       id: serviceId,
       title: serviceTitle,
       category: serviceCategory,
       price: servicePrice,
       quantity: 1,
-      // 💡 ALMACENAMIENTO CLAVE: Usamos optionLabel para guardar la fecha y hora de la visita
+      // 💡 ALMACENAMIENTO CLAVE: Incluimos la dirección y los detalles del vehículo si existen
       optionLabel: `Visita el ${formatFns(
         zonedDate,
         "dd/MM/yyyy"
-      )} a las ${selectedTimeString} hrs. (Cliente: ${nombre})`,
+      )} a las ${selectedTimeString} hrs. (Cliente: ${nombre}) ${direccionStr}${vehicleDetails}`,
     };
 
     addToCart(item);
@@ -84,7 +109,7 @@ export default function ReservaConFecha({
         "dd/MM/yyyy"
       )} a las ${selectedTimeString} hrs.`
     );
-    onClose(); // Cerrar el modal después de añadir
+    onClose();
   };
 
   const filterDay = (date: Date) => {
@@ -157,7 +182,80 @@ export default function ReservaConFecha({
         filterTime={filterTimes}
       />
 
-      {/* Campos del Cliente (Añadidos para el detalle de la visita) */}
+      {/* 💡 CAMPOS ESPECÍFICOS PARA ELECTROMECÁNICA (VEHÍCULOS) */}
+      {serviceCategory === "Electromecánica" && (
+        <div className="bg-red-50 p-4 rounded-md border border-red-200 mb-4">
+          <h4 className="text-md font-bold mb-3 flex items-center text-red-700">
+            <Car className="w-5 h-5 mr-2" /> Datos del Vehículo
+          </h4>
+
+          {/* Selector de Tipo de Vehículo */}
+          <div className="mb-4">
+            <label
+              htmlFor="tipoVehiculo"
+              className="block text-sm font-bold mb-2 text-left"
+            >
+              Tipo de Unidad:
+            </label>
+            <select
+              id="tipoVehiculo"
+              value={tipoVehiculo}
+              onChange={(e) => setTipoVehiculo(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            >
+              <option>Automóvil</option>
+              <option>Motocicleta</option>
+              <option>Camioneta</option>
+              <option>Maquinaria Pesada</option>
+            </select>
+          </div>
+
+          {/* Input de Problema */}
+          <div className="mb-2">
+            <label
+              htmlFor="problemaVehiculo"
+              className="block text-sm font-bold mb-2 text-left"
+            >
+              Describa el problema que presenta (requerido):
+            </label>
+            <textarea
+              id="problemaVehiculo"
+              rows={3}
+              value={problema}
+              onChange={(e) => setProblema(e.target.value)}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Ej: El motor presenta un código de error P0300 y tironea en baja velocidad."
+            />
+          </div>
+        </div>
+      )}
+      {/* FIN CAMPOS ELECTROMECÁNICA */}
+
+      {/* 💡 NUEVO CAMPO: Dirección de la Visita */}
+      <div className="mb-4">
+        <label
+          htmlFor="direccionVisita"
+          className="block text-sm font-bold mb-2 text-left"
+        >
+          <MapPin className="inline h-4 w-4 mr-1 text-blue-500" /> Dirección
+          exacta de la Visita:
+        </label>
+        <input
+          type="text"
+          id="direccionVisita"
+          value={direccion}
+          onChange={(e) => setDireccion(e.target.value)}
+          required
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="Ej: Calle Principal 123, Comuna, Región"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Asegúrese de incluir la comuna y región para agilizar el diagnóstico.
+        </p>
+      </div>
+
+      {/* Campos del Cliente (Tu Nombre/Empresa y Teléfono) */}
       <div className="mb-4">
         <label
           htmlFor="nombreCliente"
@@ -197,7 +295,6 @@ export default function ReservaConFecha({
         onClick={handleConfirm}
         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full font-semibold flex items-center justify-center"
       >
-        {/* 💡 CORRECCIÓN: Usamos el ícono importado */}
         <ShoppingCart className="mr-2 h-5 w-5" /> Agregar Visita a Cotización
       </button>
       <button

@@ -13,19 +13,24 @@ import {
 // --- DATOS ESPECÍFICOS DE ESTA PÁGINA ---
 const serviceId = "fotovoltaicas";
 const service = {
-  title: "Soluciones Fotovoltaicas",
+  // 💡 ADECUACIÓN: Enfocamos el título en la ingeniería y el montaje.
+  title: "Ingeniería y Montaje de Sistemas Solares FV",
   icon: Sun,
   color: "text-yellow-500 border-yellow-500",
   description:
-    "Implementación de sistemas de energía solar fotovoltaica 'On Grid' y 'Off Grid' para la generación de energía limpia y la reducción de costos a largo plazo.",
+    // 💡 ADECUACIÓN: Énfasis en el diseño, ejecución y cumplimiento normativo.
+    "Expertos en el diseño, ejecución y mantenimiento de proyectos solares fotovoltaicos 'On Grid' y 'Off Grid', asegurando la máxima eficiencia y cumplimiento normativo.",
+
   benefits: [
-    "Diseño y montaje de plantas solares a escala industrial.",
-    "Instalación de paneles solares residenciales (Net Billing).",
-    "Sistemas de almacenamiento de energía (BESS).",
-    "Asesoría en financiamiento y trámites de inyección a la red.",
+    // 💡 ADECUACIÓN: Énfasis en la ejecución integral.
+    "Diseño y Montaje de sistemas fotovoltaicos hasta 10 kW (Autoconsumo residencial/comercial).",
+    "Proyectos 'Llave en Mano' para sistemas residenciales y comerciales (Net Billing).",
+    "Diseño e Integración de Sistemas de Almacenamiento de Energía (BESS) en proyectos específicos.",
+    "Asesoría regulatoria integral, incluyendo trámites de conexión e inyección a la red ", // Clarifica que la certificación es Clase D
   ],
   details:
-    "Transforme su consumo energético en una inversión. Ofrecemos soluciones llave en mano, desde la evaluación inicial de viabilidad hasta la puesta en marcha y monitoreo de su sistema solar.",
+    // 💡 ADECUACIÓN: Se menciona el suministro de equipos como parte del servicio integral.
+    "Nuestro servicio es integral. Cubrimos desde la ingeniería conceptual y la evaluación de viabilidad, el suministro de equipos, hasta el montaje y monitoreo remoto, garantizando una transformación energética como inversión.",
   callToAction: "Solicite su Estudio de Viabilidad Solar",
 };
 // ----------------------------------------
@@ -34,92 +39,94 @@ const FotovoltaicasPage = () => {
   const navigate = useNavigate();
   const Icon = service.icon;
   const CatalogLinkSection = () => (
-    <div className="bg-yellow-100 border-l-4 border-yellow-500 p-6 rounded-xl shadow-md mt-6">
-      <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center">
-        <Package className="w-6 h-6 mr-3 text-yellow-600" />
-        Venta Directa de Componentes
-      </h3>
-      <p className="text-gray-700 mb-4">
-        ¿Solo necesita los paneles? Revise nuestro catálogo completo con
-        detalles técnicos y precios
-      </p>
+    // 💡 NUEVA SECCIÓN DE ENLACE A CATÁLOGO
+    <div className="mt-8">
+      <h3 className="text-xl font-bold text-gray-800 mb-2">Equipos Clave</h3>
       <Link
-        to="/productos/paneles"
-        className="inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
+        to="/inversores"
+        className="flex items-center justify-center bg-yellow-500 text-white px-4 py-3 rounded-lg shadow-lg hover:bg-yellow-600 transition-colors font-semibold"
       >
-        <Sun size={18} className="mr-2" />
-        Ver Catálogo de Paneles
+        <Package className="w-5 h-5 mr-2" />
+        Ver Catálogo de Inversores y Componentes
       </Link>
+      <p className="text-sm text-gray-500 mt-2">
+        Recuerde: Suministramos equipos solo para nuestros proyectos de montaje.
+      </p>
     </div>
   );
 
   return (
     <div className="pt-20 bg-gray-50 min-h-screen">
-      {/* Header de la Página */}
-      <header className="bg-gray-800 text-white py-12 mb-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl font-extrabold mb-2 flex items-center">
-            <Icon className={`w-12 h-12 mr-3 ${service.color}`} />
-            {service.title}
-          </h1>
-          <p className="text-xl font-light text-gray-300">
-            {service.description}
-          </p>
+      <header className={`bg-white shadow-md border-b-4 ${service.color} py-8`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center">
+          <Icon className={`w-16 h-16 mr-4 ${service.color.split(" ")[0]}`} />
+          <div>
+            <h1 className="text-4xl font-extrabold text-gray-800">
+              {service.title}
+            </h1>
+            <p className="text-lg text-gray-600 mt-1">{service.description}</p>
+          </div>
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Columna Principal de Contenido (2/3) */}
-        <div className="lg:col-span-2">
-          <section className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-yellow-500 mb-10">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
-              <CheckCircle className="w-7 h-7 mr-3 text-green-600" />
-              Características Clave del Servicio
+      <div className="max-w-7xl mx-auto px-6 py-12 lg:flex lg:space-x-8">
+        {/* Contenido Principal (Detalles del Servicio) */}
+        <main className="lg:w-2/3">
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+              <CheckCircle className="w-6 h-6 mr-2 text-yellow-500" />
+              Nuestras Capacidades
             </h2>
-
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed mb-6">
               {service.details}
             </p>
-
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-lg text-gray-600 list-none">
-              {service.benefits.map((benefit: string, index: number) => (
-                <li key={index} className="flex items-start">
-                  <ChevronRight
-                    className={`w-5 h-5 mr-2 mt-1 ${service.color}`}
-                  />
+            <ul className="space-y-3 pl-5 list-none">
+              {service.benefits.map((benefit, index) => (
+                <li key={index} className="flex items-start text-gray-700">
+                  <ChevronRight className="w-5 h-5 mr-2 mt-1 text-yellow-500 flex-shrink-0" />
                   {benefit}
                 </li>
               ))}
             </ul>
+            {/* Llamada a la Acción Principal */}
+            <div className="mt-8">
+              <Link
+                to="/contacto"
+                className="inline-flex items-center px-8 py-4 bg-yellow-500 text-white text-xl font-bold rounded-xl shadow-lg hover:bg-yellow-600 transition-transform transform hover:scale-105"
+              >
+                {service.callToAction}
+              </Link>
+            </div>
           </section>
-        </div>
-          <CatalogLinkSection />
-        {/* Columna Lateral (1/3) */}
-        <aside className="lg:col-span-1">
-          {/* Tarjeta de Contacto Rápido */}
-          <div
-            className={`bg-white p-6 rounded-xl shadow-lg border-t-4 ${service.color.replace(
-              "text-",
-              "border-"
-            )} mb-6`}
-          >
-            <h3 className="text-xl font-bold text-gray-800 mb-4">
-              Contacte a un Ingeniero
-            </h3>
-            <p className="text-gray-600 mb-4">
-              {service.callToAction} y reciba asesoría experta.
-            </p>
 
+          {/* 💡 Sección de Enlace a Catálogo */}
+          {CatalogLinkSection()}
+        </main>
+
+        {/* Barra Lateral (Contacto y Navegación) */}
+        <aside className="lg:w-1/3 mt-12 lg:mt-0 space-y-8">
+          {/* Contacto Directo */}
+          <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">
+              ¿Tiene un Proyecto Urgente?
+            </h3>
+            <a
+              href={`mailto:contacto@innovolt.cl`}
+              className="flex items-center justify-center mb-3 px-4 py-2 rounded text-blue-600 bg-blue-100 hover:bg-blue-200 transition-colors"
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              Enviar Email
+            </a>
             <a
               href="tel:+56912345678"
-              className="w-full inline-flex items-center justify-center px-4 py-2 font-semibold text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+              className="flex items-center justify-center px-4 py-2 rounded text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors"
             >
               <Phone className="w-5 h-5 mr-2" />
               Llamar Ahora
             </a>
           </div>
 
-          {/* Navegación a Otros Servicios (Manualmente sin array de data) */}
+          {/* Navegación a Otros Servicios */}
           <div className="bg-white p-6 rounded-xl shadow-lg">
             <h3 className="text-xl font-bold text-gray-800 mb-4">
               Otros Servicios

@@ -9,14 +9,9 @@ import {
   Clock,
   DollarSign,
   Send,
+  Wrench, // Icono para Servicios de Ingeniería
 } from "lucide-react";
-// 💡 CORRECCIÓN 1: Aseguramos que se importa el modal ajustado (ReservaConFecha/VisitaFormModal)
-import VisitaFormModal from "../components/ReservaConFecha"; // <-- Usamos el nombre del archivo adaptado
-// Importaremos 'ReservaConFecha' ya que es el componente que hemos estado adaptando,
-// pero asumimos que el archivo se llama VisitaFormModal, así que lo tipamos:
-// Si el archivo en disco se llama VisitaFormModal.tsx, mantenemos el nombre aquí.
-// Si el archivo en disco es ReservaConFecha.tsx, cambiamos la importación:
-// import VisitaFormModal from "../components/ReservaConFecha";
+import VisitaFormModal from "../components/ReservaConFecha";
 
 // --- Tipado para el componente de sección ---
 interface VisitaTecnicaProps {
@@ -36,7 +31,7 @@ const serviceDetails = {
   icon: Zap,
   color: "text-blue-600 border-blue-600",
   description:
-    "Diseño, ejecución y mantenimiento de instalaciones eléctricas de baja y media tensión, garantizando la seguridad y optimización del consumo energético.",
+    "Diseño, ejecución y mantenimiento de instalaciones eléctricas de baja tensión, garantizando la seguridad y optimización del consumo energético.",
   benefits: [
     "Instalación y certificación de tableros eléctricos.",
     "Corrección de factor de potencia y estudios de calidad de energía.",
@@ -82,6 +77,28 @@ const VisitaTecnicaSection: React.FC<VisitaTecnicaProps> = ({
 );
 // ----------------------------------------
 
+// --- NUEVA SECCIÓN: ENLACE A SERVICIOS DEL CATÁLOGO ---
+const ServiciosAdicionalesSection = () => (
+  <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-600 mb-8">
+    <h3 className="text-2xl font-extrabold text-blue-800 mb-4 flex items-center">
+      <Wrench className="w-6 h-6 mr-3" />
+      Servicios de Ingeniería en Catálogo
+    </h3>
+    <p className="text-lg text-gray-700 mb-4">
+      Explore nuestros servicios de ingeniería eléctrica con precio fijo, como
+      la **Certificación TE1**, o la **Corrección de Factor de Potencia**.
+    </p>
+    <Link
+      to="/catalogo#servicios-section" // 💡 Enlace directo al ancla de servicios
+      className="inline-flex items-center px-6 py-3 text-md font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+    >
+      <ChevronRight className="w-5 h-5 mr-2" />
+      Ver Servicios en Catálogo
+    </Link>
+  </div>
+);
+// ----------------------------------------
+
 const ElectricasPage = () => {
   const navigate = useNavigate();
   const Icon = serviceDetails.icon; // Usamos serviceDetails
@@ -110,6 +127,10 @@ const ElectricasPage = () => {
         <div className="lg:col-span-2">
           {/* 💡 CORRECCIÓN: Pasamos la función setIsModalOpen al componente de sección */}
           <VisitaTecnicaSection setIsModalOpen={setIsModalOpen} />
+
+          {/* 👇 INTEGRACIÓN DE LA NUEVA SECCIÓN 👇 */}
+          <ServiciosAdicionalesSection />
+          {/* 👆 FIN DE LA NUEVA SECCIÓN 👆 */}
 
           <section className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600 mb-10">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">

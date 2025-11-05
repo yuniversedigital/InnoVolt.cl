@@ -3,6 +3,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
   Menu,
   X,
+  Car,
   Instagram,
   Facebook,
   Zap, // Eléctricas
@@ -24,7 +25,7 @@ import Fondo3 from "../assets/2.png";
 
 // --- 1. CONSTANTES DE INNOVOLT ---
 const PHONE_NUMBER = "+56 9 1234 5678";
-const EMAIL = "contacto@innovolt.cl";
+const EMAIL = "servicioselectricos@innovolt.cl";
 const ADDRESS = "Santiago, Región Metropolitana, Chile";
 
 // Datos para la Sección de Servicios Clave
@@ -61,6 +62,8 @@ const CategoriasDeVenta = [
       "Paneles Solares (Bifaciales, Monocristalinos).",
       "Inversores de Corriente (Onda Pura, Híbridos).",
       "Baterías de Almacenamiento (Litio, AGM).",
+      "Motores de Partida",
+      "Alternadores",
     ],
     link: "/catalogo",
     buttonLabel: "Ir al Catálogo",
@@ -72,7 +75,7 @@ const ProductsSection = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
            {" "}
       <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Nuestra Oferta Integral      {" "}
+                NUESTRO CATÁLOGO     {" "}
       </h2>
            {" "}
       <p className="text-xl text-gray-600 mb-12">
@@ -146,10 +149,13 @@ const ServiciosInnoVolt = [
   },
   {
     id: "electromecanicas",
-    title: "Soluciones Electromecánicas",
-    icon: Wrench,
+    // 💡 CAMBIO DE TÍTULO
+    title: "Electromecánica Vehicular",
+    // 💡 CAMBIO DE ICONO
+    icon: Car,
     description:
-      "Integración de ingeniería eléctrica y mecánica para optimización, mantenimiento y control de maquinaria industrial.",
+      // 💡 CAMBIO DE DESCRIPCIÓN: Enfocamos el servicio en el sector automotriz.
+      "Diagnóstico, reparación y mantenimiento de sistemas eléctricos, electrónicos y mecánicos en vehículos livianos y transporte.",
   },
 ];
 
@@ -208,6 +214,10 @@ const Header = () => {
             Contacto
           </a>
         </nav>
+
+        {/* 💡 NUEVO ESPACIADOR: Oculto en móvil (md:hidden), visible en desktop (md:block). 
+        Esto mueve la navegación hacia la izquierda. */}
+        <div className="hidden md:block w-32"></div>
 
         {/* Botón de Menú Móvil */}
         <button
@@ -283,7 +293,7 @@ const HeroSection = () => (
           href="#productos"
           className="inline-block bg-white text-gray-800 hover:bg-gray-200 text-lg font-semibold px-8 py-3 rounded-lg shadow-xl transition-colors"
         >
-          Nuestros Productos
+          Nuestro Catálogo
         </a>
       </div>
     </div>
@@ -340,76 +350,76 @@ const KeyServicesSection = () => (
 );
 
 // 2.4. Why Choose Us Section
-const WhyChooseUsSection = () => (
-  <section className="py-16 md:py-24 bg-white">
-       {" "}
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           {" "}
-      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
-                ¿Por Qué Elegir InnoVolt?      {" "}
-      </h2>
-           {" "}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-               {" "}
-        <div className="text-center p-6 border rounded-lg shadow-sm">
-                    <Target className="h-12 w-12 text-blue-600 mx-auto mb-4" /> 
-                 {" "}
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                        Compromiso Normativo{" "}
-          </h3>
-                   {" "}
-          <p className="text-gray-600">
-                        Trabajamos bajo los más altos estándares de calidad y
-            seguridad, con certificación SEC/IEC, garantizando instalaciones
-            confiables.{" "}
-          </p>
-                 {" "}
-        </div>
-               {" "}
-        <div className="text-center p-6 border rounded-lg shadow-sm">
-                   {" "}
-          <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />       
-           {" "}
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                        Innovación y Eficiencia{" "}
-          </h3>
-                   {" "}
-          <p className="text-gray-600">
-            Implementamos tecnologías de vanguardia, desde automatización hasta
-            energías renovables, optimizando el consumo y la operatividad.      
-              {" "}
-          </p>
-                 {" "}
-        </div>
-               {" "}
-        <div className="text-center p-6 border rounded-lg shadow-sm">
-                    <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" /> 
-                 {" "}
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                        Soporte Integral{" "}
-          </h3>
-                   {" "}
-          <p className="text-gray-600">
-                        Ofrecemos asesoría completa, desde la fase de diseño
-            hasta el mantenimiento post-instalación, con un equipo de ingenieros
-            dedicados.  
-          </p>
-                 {" "}
-        </div>
-             {" "}
-      </div>
-         {" "}
-    </div>
-     {" "}
-  </section>
-);
+// const WhyChooseUsSection = () => (
+//   <section className="py-16 md:py-24 bg-white">
+//        {" "}
+//     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//            {" "}
+//       <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
+//                 ¿Por Qué Elegir InnoVolt?      {" "}
+//       </h2>
+//            {" "}
+//       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+//                {" "}
+//         <div className="text-center p-6 border rounded-lg shadow-sm">
+//                     <Target className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+//                  {" "}
+//           <h3 className="text-xl font-semibold text-gray-800 mb-2">
+//                         Compromiso Normativo{" "}
+//           </h3>
+//                    {" "}
+//           <p className="text-gray-600">
+//                         Trabajamos bajo los más altos estándares de calidad y
+//             seguridad, con certificación SEC/IEC, garantizando instalaciones
+//             confiables.{" "}
+//           </p>
+//                  {" "}
+//         </div>
+//                {" "}
+//         <div className="text-center p-6 border rounded-lg shadow-sm">
+//                    {" "}
+//           <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+//            {" "}
+//           <h3 className="text-xl font-semibold text-gray-800 mb-2">
+//                         Innovación y Eficiencia{" "}
+//           </h3>
+//                    {" "}
+//           <p className="text-gray-600">
+//             Implementamos tecnologías de vanguardia, desde automatización hasta
+//             energías renovables, optimizando el consumo y la operatividad.
+//               {" "}
+//           </p>
+//                  {" "}
+//         </div>
+//                {" "}
+//         <div className="text-center p-6 border rounded-lg shadow-sm">
+//                     <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+//                  {" "}
+//           <h3 className="text-xl font-semibold text-gray-800 mb-2">
+//                         Soporte Integral{" "}
+//           </h3>
+//                    {" "}
+//           <p className="text-gray-600">
+//                         Ofrecemos asesoría completa, desde la fase de diseño
+//             hasta el mantenimiento post-instalación, con un equipo de ingenieros
+//             dedicados.
+//           </p>
+//                  {" "}
+//         </div>
+//              {" "}
+//       </div>
+//          {" "}
+//     </div>
+//      {" "}
+//   </section>
+// );
 
 // 2.5. Process Section (Nueva sección para guiar al usuario)
 const ProcessSection = () => (
   <section id="proceso" className="py-16 md:py-24 bg-gray-100">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
-        Nuestro Proceso de Visita Técnica en 3 Pasos
+        Visita Técnica en 3 Pasos
       </h2>
 
       {/* 1. Selección de Servicio */}
@@ -439,8 +449,8 @@ const ProcessSection = () => (
           to="/servicios/electromecanicas"
           className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors min-w-[200px]"
         >
-          <Wrench size={20} className="mr-2" />
-          Soluciones Electromecánicas
+          <Car size={20} className="mr-2" />
+          Electromecánica Vehicular
         </Link>
       </div>
       {/* FIN DEL SELECTOR */}
@@ -813,10 +823,9 @@ const Home = () => {
       <main>
                 <HeroSection />
         <ProcessSection />
-        <WhyChooseUsSection />       
-        <ProductsSection />
-        {/*   <KeyServicesSection />             💡 Nueva sección de proceso */}
-                <ContactSection />     {" "}
+          <KeyServicesSection />   {/* <WhyChooseUsSection />        */}
+        <ProductsSection />         💡 Nueva sección de proceso        {" "}
+        <ContactSection />     {" "}
       </main>
             <Footer />   {" "}
     </div>
