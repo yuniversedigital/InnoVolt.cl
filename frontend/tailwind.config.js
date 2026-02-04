@@ -4,15 +4,49 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Tu paleta original se mantiene intacta
         pastel: {
           sage: '#CCD5AE',
           pink: '#FFDDD2',
           cream: '#FAEDCD',
           mint: '#D4E6B5',
-          green: '#98B475', // Added new green color
+          green: '#98B475',
+        },
+      },
+      // 1. Nueva Animación "Blob" (Burbuja líquida)
+      animation: {
+        blob: "blob 7s infinite",
+      },
+      // 2. Keyframes para el movimiento
+      keyframes: {
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
         },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // 3. Plugin manual para habilitar las clases 'animation-delay'
+    function ({ addUtilities }) {
+      addUtilities({
+        ".animation-delay-2000": {
+          "animation-delay": "2s",
+        },
+        ".animation-delay-4000": {
+          "animation-delay": "4s",
+        },
+      });
+    },
+  ],
 };
