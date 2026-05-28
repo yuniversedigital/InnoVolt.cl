@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AlertTriangle, Home, Mail, RefreshCw } from "lucide-react"; // Iconos de soporte
 
-const EMAIL_SOPORTE = "soporte@innovolt.cl";
+const EMAIL_SOPORTE = "ventas.innovolt@gmail.com";
 
 function PaymentFailurePage() {
   const location = useLocation();

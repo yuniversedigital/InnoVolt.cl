@@ -3,64 +3,78 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation, // 1. Importamos useLocation
 } from "react-router-dom";
 import React from "react";
-// 💡 NUEVAS IMPORTACIONES: Proveedor del carrito y el componente del ícono
-import { CartProvider } from "./pages/CartContext"; // Asegurarse de que el export sea CartProvider
+
+import { CartProvider } from "./pages/CartContext";
 import CartIcon from "./components/CartIcon";
-import CatalogoGeneralPage from "./pages/CatalogoGeneralPage";
-import Home from "./pages/Home";
 import ScrollToTop from "./components/ScrollToTop";
 
-// --- Importaciones de Páginas de InnoVolt ---
+// --- Páginas ---
+import LandingHub from "./pages/LandingHub";
+import DigitalHome from "./pages/DigitalHome";
+import ElectricalHome from "./pages/Home"; // Tu antiguo Home.jsx
+
 import QuienesSomosPage from "./pages/QuienesSomos";
+import CatalogoGeneralPage from "./pages/CatalogoGeneralPage";
+import InversoresPage from "./pages/InversoresPage";
 import ElectricasPage from "./pages/ElectricasPage";
 import FotovoltaicasPage from "./pages/FotovoltaicasPage";
 import ElectromecanicasPage from "./pages/ElectromecanicasPage";
 import PoliticasdePrivacidad from "./pages/PoliticasdePrivacidad";
 import TerminosyCondiciones from "./pages/TerminosyCondiciones";
-import InversoresPage from "./pages/InversoresPage";
 
 import "./index.css";
+import PortfolioPage from "./pages/PortfolioPages";
+
+// 💡 COMPONENTE AUXILIAR: Controla qué elementos globales se ven según la ruta
+const GlobalElements = () => {
+  const location = useLocation();
+  
+  // Lista de rutas donde NO queremos ver el carrito
+  const hideCartPaths = ["/digital", "/portafolio", "/"];
+  
+  // Verificamos si la ruta actual está en la lista de ocultos
+  const showCart = !hideCartPaths.includes(location.pathname);
+
+  return (
+    <>
+      {/* Solo mostramos el CartIcon si showCart es true */}
+      {showCart && <CartIcon />}
+      <ScrollToTop />
+    </>
+  );
+};
 
 export default function App() {
   return (
-    // 1. Envolvemos todo con el CartProvider
     <CartProvider>
       <Router>
-        {/* 2. Colocamos CartIcon aquí para que se muestre en todas las rutas */}
-        <CartIcon />
+        {/* 👇 Aquí insertamos el controlador de elementos globales */}
+        <GlobalElements />
 
-        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* HUB CENTRAL */}
+          <Route path="/" element={<ElectricalHome/>} />
 
+          {/* MUNDO DIGITAL (Sin Carrito) */}
+          <Route path="/digital" element={<DigitalHome />} />
+{/* 👇 NUEVA RUTA DE PORTAFOLIO INDEPENDIENTE */}
+          <Route path="/portafolio" element={<PortfolioPage />} />
+          {/* MUNDO FÍSICO / ELÉCTRICO */}
+          <Route path="/electricidad" element={<ElectricalHome />} />
+          
+          {/* Resto de rutas */}
           <Route path="/quienes-somos" element={<QuienesSomosPage />} />
-          <Route path="/productos/inversores" element={<InversoresPage />} />
-
-          {/* === RUTAS DE SERVICIOS INDEPENDIENTES === */}
-          <Route path="/servicios/electricas" element={<ElectricasPage />} />
           <Route path="/catalogo" element={<CatalogoGeneralPage />} />
-          <Route
-            path="/servicios/fotovoltaicas"
-            element={<FotovoltaicasPage />}
-          />
-          <Route
-            path="/servicios/electromecanicas"
-            element={<ElectromecanicasPage />}
-          />
+          <Route path="/productos/inversores" element={<InversoresPage />} />
+          <Route path="/servicios/electricas" element={<ElectricasPage />} />
+          <Route path="/servicios/fotovoltaicas" element={<FotovoltaicasPage />} />
+          <Route path="/servicios/electromecanicas" element={<ElectromecanicasPage />} />
+          <Route path="/politicas-de-privacidad" element={<PoliticasdePrivacidad />} />
+          <Route path="/terminos-y-condiciones" element={<TerminosyCondiciones />} />
 
-          {/* === RUTAS LEGALES === */}
-          <Route
-            path="/politicas-de-privacidad"
-            element={<PoliticasdePrivacidad />}
-          />
-          <Route
-            path="/terminos-y-condiciones"
-            element={<TerminosyCondiciones />}
-          />
-
-          {/* Ruta que redirige a la página principal si no hay coincidencias */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

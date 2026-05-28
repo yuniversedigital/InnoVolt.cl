@@ -25,14 +25,14 @@ const QuienesSomosSection = () => (
           Ingeniería, Innovación y Compromiso
         </h2>
         <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-          **Somos InnoVolt**, una empresa de ingeniería de vanguardia
+          Somos InnoVolt, una empresa de ingeniería de vanguardia
           especializada en la entrega de soluciones integrales para los sectores
           eléctrico, fotovoltaico y electromecánico. Desde nuestro inicio, nos
           hemos comprometido a impulsar la eficiencia operativa y la
           sostenibilidad de nuestros clientes.
         </p>
         <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-          Nuestro equipo está formado por ingenieros y técnicos altamente
+          Nuestro equipo está formado por técnicos altamente
           cualificados, apasionados por resolver los desafíos más complejos de
           la industria con metodologías innovadoras y un estricto apego a los
           más altos estándares de calidad y seguridad.

@@ -246,7 +246,7 @@ function SuccessPage() {
             Volver a InnoVolt
           </button>
           <a
-            href="mailto:contacto@innovolt.cl"
+            href="mailto:ventas.innovolt@gmail.com"
             className="px-8 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition-colors flex items-center"
             target="_blank"
             rel="noopener noreferrer"

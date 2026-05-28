@@ -185,7 +185,8 @@ const ElectromecanicasPage = () => {
             </p>
                        {" "}
             <a
-              href="mailto:ventas@innovolt.cl"
+              href="mailto:ventas.innovolt@gmail.com
+"
               className="w-full inline-flex items-center justify-center px-4 py-2 mb-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
             >
                             <Mail className="w-5 h-5 mr-2" />             
@@ -193,7 +194,7 @@ const ElectromecanicasPage = () => {
             </a>
                        {" "}
             <a
-              href="tel:+56912345678"
+              href="tel:+56923680476"
               className="w-full inline-flex items-center justify-center px-4 py-2 font-semibold text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
             >
                             <Phone className="w-5 h-5 mr-2" />             

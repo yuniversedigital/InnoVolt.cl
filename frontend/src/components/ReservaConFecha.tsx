@@ -106,7 +106,7 @@ ${datosVehiculo}
     `.trim();
 
     // 5. Enviar
-    const numeroTelefono = "56912345678"; // ⚠️ REEMPLAZA CON TU NÚMERO
+    const numeroTelefono = "56923680476"; // ⚠️ REEMPLAZA CON TU NÚMERO
     const mensajeCodificado = encodeURIComponent(mensaje);
     window.open(`https://wa.me/${numeroTelefono}?text=${mensajeCodificado}`, "_blank");
     

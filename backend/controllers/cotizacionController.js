@@ -6,7 +6,7 @@ require("dotenv").config();
 
 // Constantes de InnoVolt
 const INNOVOLT_EMAIL_RECEPTOR =
-  process.env.INNOVOLT_EMAIL_RECEPTOR || "contacto@innovolt.cl";
+  process.env.INNOVOLT_EMAIL_RECEPTOR || "ventas.innovolt@gmail.com";
 
 /**
  * @desc Recibe la lista de productos del carrito de cotización del frontend

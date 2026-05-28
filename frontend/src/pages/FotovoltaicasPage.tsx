@@ -111,14 +111,15 @@ const FotovoltaicasPage = () => {
               ¿Tiene un Proyecto Urgente?
             </h3>
             <a
-              href={`mailto:contacto@innovolt.cl`}
+              href={`mailto:ventas.innovolt@gmail.com
+`}
               className="flex items-center justify-center mb-3 px-4 py-2 rounded text-blue-600 bg-blue-100 hover:bg-blue-200 transition-colors"
             >
               <Mail className="w-5 h-5 mr-2" />
               Enviar Email
             </a>
             <a
-              href="tel:+56912345678"
+              href="tel:+56923680476"
               className="flex items-center justify-center px-4 py-2 rounded text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors"
             >
               <Phone className="w-5 h-5 mr-2" />

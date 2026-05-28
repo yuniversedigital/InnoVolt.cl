@@ -2,8 +2,9 @@ import React from "react";
 import { CheckCircle, Phone, Mail, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const PHONE_NUMBER = "+56 9 1234 5678";
-const EMAIL = "contacto@innovolt.cl";
+const PHONE_NUMBER = "+56 9 2368 0476";
+const EMAIL = "ventas.innovolt@gmail.com"
+;
 
 function CotizacionGraciasPage() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function CotizacionGraciasPage() {
             ¿Qué sucede ahora?
           </h2>
           <p className="text-gray-700 mb-4">
-            Nuestro equipo de ingenieros ha recibido el detalle de su
+            Nuestro equipo de técnicos ha recibido el detalle de su
             cotización.
           </p>
           <ul className="space-y-2 text-gray-700 text-sm">
