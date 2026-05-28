@@ -22,7 +22,7 @@ import {
 
 // Asegúrate de que esta ruta sea correcta en tu proyecto
 import Fondo3 from "../assets/2.png"; // Si no lo usas, puedes eliminar la importación
-import Yo from "../assets/Yo.png";
+import Yo from "../assets/yo2.png";
 // import WhatsappFloat from "../components/WhatsappFloat";
 
 // --- 1. CONSTANTES ---

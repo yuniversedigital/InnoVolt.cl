@@ -33,7 +33,7 @@ const GlobalElements = () => {
   const location = useLocation();
   
   // Lista de rutas donde NO queremos ver el carrito
-  const hideCartPaths = ["/digital", "/portafolio", "/"];
+  const hideCartPaths = ["/digital", "/portafolio", "/", "/servicios/electricas"];
   
   // Verificamos si la ruta actual está en la lista de ocultos
   const showCart = !hideCartPaths.includes(location.pathname);

@@ -161,14 +161,7 @@ const ElectricasPage = () => {
                   Hablemos por WhatsApp
                 </a>
 
-                <a
-                  href="mailto:ventas.innovolt@gmail.com
-"
-                  className="w-full flex items-center justify-center px-4 py-4 font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl transition-colors"
-                >
-                  <Mail className="w-5 h-5 mr-3" />
-                  Enviar Correo
-                </a>
+                
                </div>
 
                <div className="mt-6 flex items-center justify-center text-xs text-gray-400">
